@@ -1,3 +1,9 @@
+body {
+    background-image: url('assets/radar_background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 /*need the [open] to make sure that flex is applied only when dialog is open, 
 if not dialog won't close since flex will bring the dialog up to apply style*/
 #ChoiceDialog[open] {
