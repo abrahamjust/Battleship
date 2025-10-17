@@ -1,0 +1,33 @@
+/*need the [open] to make sure that flex is applied only when dialog is open, 
+if not dialog won't close since flex will bring the dialog up to apply style*/
+#ChoiceDialog[open] {
+    border-radius: 1rem;
+    border-color: transparent;
+    background-color: rgba(0, 0, 0, 0.09);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+}
+
+#dialogButtonContainer>button {
+    width: 9rem;
+    height: 2rem;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    border-radius: 1rem;
+    border-color: transparent;
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
+#dialogButtonContainer>button:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+#ChoiceDialog::backdrop {
+    background-image: url('assets/ocean.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
