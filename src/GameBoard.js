@@ -1,7 +1,10 @@
 export { Gameboard };
+import { Ship } from "./Ships.js";
 
 class Gameboard {
     constructor() {
+        this.ships = new Ship();
+
         this.board = [
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -156,7 +159,37 @@ class Gameboard {
         }
     }
 
-    receiveAttack() {
-
+    receiveAttack(x, y) {
+        if (this.board[x][y] == 'h' || this.board[x][y] == 'x') {
+            return "already tried";
+        } else if (this.board[x][y] == 0) {
+            this.board[x][y] = 'x';
+            return "miss";
+        } else {
+            switch (this.board[x][y]) {
+                case 'd':
+                    this.ships.destroyer.hits += 1;
+                    this.ships.isSunk("destroyer");
+                    break;
+                case 'b':
+                    this.ships.battleship.hits += 1;
+                    this.ships.isSunk("battleship");
+                    break;
+                case 'ca':
+                    this.ships.carrier.hits += 1;
+                    this.ships.isSunk("carrier");
+                    break;
+                case 's':
+                    this.ships.submarine.hits += 1;
+                    this.ships.isSunk("submarine");
+                    break;
+                case 'cr':
+                    this.ships.cruiser.hits += 1;
+                    this.ships.isSunk("cruiser");
+                    break;
+            }
+            this.board[x][y] = 'h';
+            return "hit";
+        }
     }
 }
