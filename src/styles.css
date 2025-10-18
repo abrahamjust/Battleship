@@ -1,7 +1,18 @@
 body {
     background-image: url('assets/radar_background.jpg');
     background-repeat: no-repeat;
+    background-position: center center;
     background-size: cover;
+    /* Optional: keeps the background fixed during scroll */
+    background-attachment: fixed;
+    /* Remove default body margin */
+    margin: 0;
+    /* Ensure body takes full viewport height */
+    height: 100vh;
+    /* Ensure body takes full viewport width */
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
 }
 
 /*need the [open] to make sure that flex is applied only when dialog is open, 
@@ -36,4 +47,108 @@ if not dialog won't close since flex will bring the dialog up to apply style*/
     background-image: url('assets/ocean.jpg');
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+#results {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 0 0 auto;
+}
+
+#textResult {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50rem;
+    height: 5rem;
+    padding: 3px;
+    margin: 5px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+    font-weight: bolder;
+}
+
+#layout {
+    flex: 1 1 auto;
+    min-height: 0;
+    margin-top: 20px;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 1.5fr 3fr 3fr;
+    grid-template-rows: 1fr 8fr;
+    box-sizing: border-box;
+}
+
+#shipsContainer {
+    margin-left: 20px;
+    margin-bottom: 20px;
+    grid-area: 1 / 1 / 3 / 2;
+    background-color: rgba(48, 48, 53, 0.5);
+    border-radius: 5px;
+
+}
+
+#shipsContainer div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#board {
+    grid-area: 1 / 2 / 3 / 4;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    display: flex;
+}
+
+#myBoard, #enemyBoard {
+    margin: 10px;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#myBoard > p, #enemyBoard > p {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.414);
+    height: 3rem;
+    border-radius: 5px;
+}
+
+.gridBoard {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 255, 100, 0.5);
+    border: 5px solid black;
+}
+
+#setup {
+    width: 8rem;
+    height: 5rem;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    border-radius: 1rem;
+    border-color: transparent;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+#setup:hover {
+    background-color: rgba(0, 0, 0, 1);
 }
