@@ -111,7 +111,8 @@ if not dialog won't close since flex will bring the dialog up to apply style*/
     display: flex;
 }
 
-#myBoard, #enemyBoard {
+#myBoard,
+#enemyBoard {
     margin: 10px;
     flex: 1 1 auto;
     display: flex;
@@ -120,7 +121,8 @@ if not dialog won't close since flex will bring the dialog up to apply style*/
     align-items: center;
 }
 
-#myBoard > p, #enemyBoard > p {
+#myBoard>p,
+#enemyBoard>p {
     display: flex;
     width: 100%;
     justify-content: center;
@@ -137,6 +139,8 @@ if not dialog won't close since flex will bring the dialog up to apply style*/
     height: 100%;
     background-color: rgba(0, 255, 100, 0.5);
     border: 5px solid black;
+    display: flex;
+    flex-direction: column;
 }
 
 #setup {
@@ -151,4 +155,32 @@ if not dialog won't close since flex will bring the dialog up to apply style*/
 
 #setup:hover {
     background-color: rgba(0, 0, 0, 1);
+}
+
+.rowDiv {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+.colDiv {
+    height: 100%;
+    width: 100%;
+    
+}
+
+.colDiv.Ship {
+    background-color: grey;
+}
+
+.colDiv:hover {
+    border: 2px solid black;
+}
+
+.colDiv.Hit {
+    background-color: red;
+}
+
+.colDiv.Miss {
+    background-color: black;
 }

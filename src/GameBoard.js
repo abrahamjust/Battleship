@@ -42,7 +42,7 @@ class Gameboard {
 
     placeShip(ship, mode, x, y) {
         ship = ship.toLowerCase();
-        if (mode == 'horizontal') {
+        if (mode == 'vertical') {
             switch (ship) {
                 case "destroyer":
                     if (y <= 9 && x + 1 <= 9 && this.board[x][y] == 0 && this.board[x + 1][y] == 0) {
@@ -168,24 +168,19 @@ class Gameboard {
         } else {
             switch (this.board[x][y]) {
                 case 'd':
-                    this.ships.destroyer.hits += 1;
-                    this.ships.isSunk("destroyer");
+                    this.ships.hit("destroyer");
                     break;
                 case 'b':
-                    this.ships.battleship.hits += 1;
-                    this.ships.isSunk("battleship");
+                    this.ships.hit("battleship");
                     break;
                 case 'ca':
-                    this.ships.carrier.hits += 1;
-                    this.ships.isSunk("carrier");
+                    this.ships.hit("carrier");
                     break;
                 case 's':
-                    this.ships.submarine.hits += 1;
-                    this.ships.isSunk("submarine");
+                    this.ships.hit("submarine");
                     break;
                 case 'cr':
-                    this.ships.cruiser.hits += 1;
-                    this.ships.isSunk("cruiser");
+                    this.ships.hit("cruiser");
                     break;
             }
             this.board[x][y] = 'h';

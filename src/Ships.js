@@ -34,18 +34,23 @@ class Ship {
         switch (ship) {
             case "destroyer":
                 this.destroyer.hits += 1;
+                this.isSunk("destroyer");
                 break;
             case "battleship":
                 this.battleship.hits += 1;
+                this.isSunk("battleship");
                 break;
             case "carrier":
                 this.carrier.hits += 1;
+                this.isSunk("carrier");
                 break;
             case "submarine":
                 this.submarine.hits += 1;
+                this.isSunk("submarine");
                 break;
             case "cruiser":
                 this.cruiser.hits += 1;
+                this.isSunk("cruiser");
                 break;
             default:
                 break;
@@ -56,24 +61,29 @@ class Ship {
         ship = ship.toLowerCase();
         switch (ship) {
             case "destroyer":
-                this.destroyer.hits == this.destroyer.length;
-                this.destroyer.sunk = true;
+                if(this.destroyer.hits == this.destroyer.length) {
+                    this.destroyer.sunk = true;
+                }
                 break;
             case "battleship":
-                this.battleship.hits == this.battleship.length;
-                this.battleship.sunk = true;
+                if(this.battleship.hits == this.battleship.length) {
+                    this.battleship.sunk = true;
+                }
                 break;
             case "carrier":
-                this.carrier.hits == this.carrier.length;
-                this.carrier.sunk = true;
+                if(this.carrier.hits == this.carrier.length) {
+                    this.carrier.sunk = true;
+                }
                 break;
             case "submarine":
-                this.submarine.hits == this.submarine.length;
-                this.submarine.sunk = true;
+                if(this.submarine.hits == this.submarine.length) {
+                    this.submarine.sunk = true;
+                }
                 break;
             case "cruiser":
-                this.cruiser.hits == this.cruiser.length;
-                this.cruiser.sunk = true;
+                if(this.cruiser.hits == this.cruiser.length) {
+                    this.cruiser.sunk = true;
+                }
                 break;
             default:
                 break;
