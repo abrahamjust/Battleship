@@ -63,28 +63,33 @@ class Ship {
             case "destroyer":
                 if(this.destroyer.hits == this.destroyer.length) {
                     this.destroyer.sunk = true;
+                    return 'sunk';
                 }
-                break;
+                return 'not sunk';
             case "battleship":
                 if(this.battleship.hits == this.battleship.length) {
                     this.battleship.sunk = true;
+                    return 'sunk';
                 }
-                break;
+                return 'not sunk';
             case "carrier":
                 if(this.carrier.hits == this.carrier.length) {
                     this.carrier.sunk = true;
+                    return 'sunk';
                 }
-                break;
+                return 'not sunk';
             case "submarine":
                 if(this.submarine.hits == this.submarine.length) {
                     this.submarine.sunk = true;
+                    return 'sunk';
                 }
-                break;
+                return 'not sunk';
             case "cruiser":
                 if(this.cruiser.hits == this.cruiser.length) {
                     this.cruiser.sunk = true;
+                    return 'sunk';
                 }
-                break;
+                return 'not sunk';
             default:
                 break;
         }

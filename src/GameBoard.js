@@ -5,17 +5,17 @@ class Gameboard {
     constructor() {
         this.ships = new Ship();
 
-        this.board = [
+        this.board = [ // hard coded for testing purposes
+            ['d', 'd', 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            ['b', 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            ['b', 0, 'cr', 'cr', 'cr', 0, 0, 0, 0, 0],
+            ['b', 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            ['b', 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            ['ca', 'ca', 'ca', 'ca', 'ca', 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+            ['s', 's', 's', 0, 0, 0, 0, 0, 0, 0]
         ];
 
         this.enemyBoard = [
@@ -186,5 +186,18 @@ class Gameboard {
             this.board[x][y] = 'h';
             return "hit";
         }
+    }
+
+    checkShipStatus() { // true for all ships sunk, false if otherwise
+        if (
+            this.ships.destroyer.sunk &&
+            this.ships.battleship.sunk &&
+            this.ships.carrier.sunk &&
+            this.ships.submarine.sunk &&
+            this.ships.cruiser.sunk
+        ) {
+            return true;
+        }
+        return false;
     }
 }

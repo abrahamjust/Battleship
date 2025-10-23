@@ -1,4 +1,4 @@
-export { getChoice, displayBoard, addDivEventListeners };
+export { getChoice, displayBoard, addDivEventListeners, removeDivEventListeners};
 
 let dialog = document.getElementById("ChoiceDialog");
 let playerChoiceButton = document.getElementById("playerChoice");
@@ -10,19 +10,22 @@ function getChoice() {
     return new Promise((resolve) => {
         playerChoiceButton.addEventListener('click', () => {
             dialog.close();
-            resolve(1);
+            resolve(1); // one if player v player
         });
 
         computerChoiceButton.addEventListener('click', () => {
             dialog.close();
-            resolve(0);
+            resolve(0); // zero if player v computer
         });
     });
 }
 
-function displayBoard(name, myBoardArray) {
+function displayBoard(object) {
 
     // filling myBoard
+    let name = object.name;
+    let myBoardArray = object.board.board;
+
     let myBoard = document.querySelector('#myBoard');
     let myGrid = myBoard.querySelector('.gridBoard');
     for (let i = 0; i < 10; i++) {
@@ -41,7 +44,7 @@ function displayBoard(name, myBoardArray) {
         myGrid.appendChild(rowDiv);
     }
 
-    // filling enemyBoard
+    // filling enemyBoard (board we click to attack)
     let enemyBoard = document.querySelector('#enemyBoard');
     let enemyGrid = enemyBoard.querySelector('.gridBoard');
     for (let i = 0; i < 10; i++) {
@@ -51,6 +54,7 @@ function displayBoard(name, myBoardArray) {
             let colDiv = document.createElement('div');
             colDiv.className = 'colDiv';
             colDiv.classList.add('enemy');
+            colDiv.classList.add(name);
             colDiv.id = `${i},${j}`;
             rowDiv.appendChild(colDiv);
         }
@@ -58,7 +62,7 @@ function displayBoard(name, myBoardArray) {
     }
 }
 
-function addDivEventListeners(object) {
+function addDivEventListeners(object) { // object is receiving the attacks
     let divs = document.querySelectorAll('.enemy');
     let x = 0, y = 0;
     divs.forEach(div => {
@@ -72,5 +76,12 @@ function addDivEventListeners(object) {
                 div.classList.add('Miss');
             }
         });
+    });
+}
+
+function removeDivEventListeners() { // to remove event listeners after shooting to prevent double clicks
+    let divs = document.querySelectorAll('.enemy');
+    divs.forEach(div => {
+        div.removeEventListener('click');
     });
 }

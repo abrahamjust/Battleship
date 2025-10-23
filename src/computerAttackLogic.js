@@ -1,6 +1,6 @@
 export { attackLogic };
 
-function attackLogic(player) {
+function attackLogic(player) { // attack player 
     let result = document.getElementById('textResult');
     result.innerText = "COMPUTER IS ATTACKING";
 
