@@ -1,4 +1,4 @@
-export { getChoice, displayBoard, addDivEventListeners, removeDivEventListeners};
+export { getChoice, displayBoard, addDivEventListeners };
 
 let dialog = document.getElementById("ChoiceDialog");
 let playerChoiceButton = document.getElementById("playerChoice");
@@ -62,26 +62,44 @@ function displayBoard(object) {
     }
 }
 
-function addDivEventListeners(object) { // object is receiving the attacks
+function addDivEventListeners(object, callback) {
     let divs = document.querySelectorAll('.enemy');
-    let x = 0, y = 0;
     divs.forEach(div => {
-        div.addEventListener('click', () => {
-            [x, y] = div.id.split(",").map(Number);
-            console.log(x);
-            let mssg = object.board.receiveAttack(x, y);
-            if (mssg == 'hit') {
-                div.classList.add('Hit');
-            } else if (mssg == 'miss') {
-                div.classList.add('Miss');
-            }
-        });
+        if (!div._listener) { // only add once
+            div._listener = () => handleClick(div, object, callback);
+            div.addEventListener('click', div._listener);
+        }
     });
 }
 
-function removeDivEventListeners() { // to remove event listeners after shooting to prevent double clicks
+
+function handleClick(div, object, callback) {
+    let [x, y] = div.id.split(",").map(Number);
+
+    // ignore if already clicked
+    if (div.classList.contains("Hit") || div.classList.contains("Miss")) return;
+
+    let mssg = object.board.receiveAttack(x, y);
+    if (mssg == 'hit') {
+        div.classList.add('Hit');
+    } else if (mssg == 'miss') {
+        div.classList.add('Miss');
+    }
+
+    if (object.board.checkShipStatus()) { // if true enemy ships all sunk
+        let result = document.getElementById('textResult');
+        result.innerText = "YOU HAVE WON";
+        removeListeners();
+        return;
+    } else {
+        if (callback) callback();
+    }
+}
+
+
+function removeListeners() {
     let divs = document.querySelectorAll('.enemy');
     divs.forEach(div => {
-        div.removeEventListener('click');
+        div.replaceWith(div.cloneNode(true)); // removes all listeners
     });
 }

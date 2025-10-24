@@ -22,18 +22,40 @@ async function initialize() { // use promises to wait till choice is made
             let result = document.getElementById('textResult');
             result.innerText = "START";
             startGameComputer();
-        }, {once: true}); 
+        }, { once: true });
 
 
     }
 };
 
 function startGameComputer() {
-    
+    playerAttack(computer);
+
 }
 
-function playerAttack(object) { // object is getting attacked
-    
+function playerAttack(object) { // object is getting attacked (can also be another player so pass the object which is getting attacked)
+    let result = document.getElementById('textResult');
+    result.innerText = "YOUR TURN";
+    // attack computer
+    addDivEventListeners(object, () => {
+        computerAttack();
+    });
+
+    // check if computer ships sunk, if yes put "YOU WON" and end game
+    // else pass it to computer
+}
+
+function computerAttack() { // player is getting attacked, it will always be player1 so no need to pass as parameter
+    let result = document.getElementById('textResult');
+    result.innerText = "COMPUTER'S TURN";
+    // attack player
+    attackLogic(player1);
+    if (player1.board.checkShipStatus()) {
+        result.innerText = "COMPUTER HAS WON";
+    } else {
+        playerAttack(computer);
+    }
+    // check if player ships sunk, if yes put "COMPUTER WON" and end game
 }
 
 initialize();
