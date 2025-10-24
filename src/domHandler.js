@@ -1,17 +1,17 @@
-export { getChoice, displayBoard, addDivEventListeners };
+export { getChoice, displayBoard, addDivEventListeners, removeListeners };
 
 let dialog = document.getElementById("ChoiceDialog");
-let playerChoiceButton = document.getElementById("playerChoice");
+// let playerChoiceButton = document.getElementById("playerChoice");
 let computerChoiceButton = document.getElementById("computerChoice");
 
 function getChoice() {
     dialog.showModal();
 
     return new Promise((resolve) => {
-        playerChoiceButton.addEventListener('click', () => {
-            dialog.close();
-            resolve(1); // one if player v player
-        });
+        // playerChoiceButton.addEventListener('click', () => {
+        //     dialog.close();
+        //     resolve(1); // one if player v player
+        // });
 
         computerChoiceButton.addEventListener('click', () => {
             dialog.close();
@@ -60,6 +60,22 @@ function displayBoard(object) {
         }
         enemyGrid.appendChild(rowDiv);
     }
+
+    // Select any cell from the board
+    const firstCell = document.querySelector('.colDiv');
+
+    // Get its dimensions
+    const cellRect = firstCell.getBoundingClientRect();
+    const cellWidth = cellRect.width;
+    const cellHeight = cellRect.height;
+
+    const ships = document.querySelectorAll('.ship');
+
+    ships.forEach(ship => {
+        const length = ship.dataset.length; // number of cells
+        ship.style.height = `${cellHeight}px`;
+        ship.style.width = `${cellWidth * length}px`;
+    });
 }
 
 function addDivEventListeners(object, callback) {

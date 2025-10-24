@@ -1,5 +1,5 @@
 import "./styles.css";
-import { getChoice, displayBoard, addDivEventListeners } from "./domHandler.js";
+import { getChoice, displayBoard, addDivEventListeners, removeListeners } from "./domHandler.js";
 import { Player } from "./Player.js";
 import { attackLogic } from "./computerAttackLogic.js";
 
@@ -30,7 +30,6 @@ async function initialize() { // use promises to wait till choice is made
 
 function startGameComputer() {
     playerAttack(computer);
-
 }
 
 function playerAttack(object) { // object is getting attacked (can also be another player so pass the object which is getting attacked)
@@ -38,7 +37,11 @@ function playerAttack(object) { // object is getting attacked (can also be anoth
     result.innerText = "YOUR TURN";
     // attack computer
     addDivEventListeners(object, () => {
-        computerAttack();
+        // delay computer's turn by 1 second
+        removeListeners(); 
+        setTimeout(() => {
+            computerAttack();
+        }, 1000); // 1000 ms = 1 second
     });
 
     // check if computer ships sunk, if yes put "YOU WON" and end game
@@ -52,8 +55,11 @@ function computerAttack() { // player is getting attacked, it will always be pla
     attackLogic(player1);
     if (player1.board.checkShipStatus()) {
         result.innerText = "COMPUTER HAS WON";
+        removeListeners(); 
     } else {
-        playerAttack(computer);
+        setTimeout(() => {
+            playerAttack(computer);
+        }, 1000);
     }
     // check if player ships sunk, if yes put "COMPUTER WON" and end game
 }

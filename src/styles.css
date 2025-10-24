@@ -184,3 +184,33 @@ if not dialog won't close since flex will bring the dialog up to apply style*/
 .colDiv.Miss {
     background-color: black;
 }
+
+#destroyer {
+    width: 20px;
+    height: 30px;
+    background-color: grey;
+}
+
+#battleship {
+    width: 80px;
+    height: 30px;
+    background-color: grey;
+}
+
+#carrier {
+    width: 100px;
+    height: 30px;
+    background-color: grey;
+}
+
+#cruiser {
+    width: 60px;
+    height: 30px;
+    background-color: grey;
+}
+
+#submarine {
+    width: 60px;
+    height: 30px;
+    background-color: grey;
+}

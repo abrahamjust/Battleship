@@ -11,10 +11,10 @@
     <!--Dialog box-->
     <dialog id="ChoiceDialog">
         <h1 id="dialogHeading">WELCOME TO BATTLESHIP</h1>
-        <p id="dialogPara">Choose mode</p>
+        <p id="dialogPara">Choose mode (player v player will be added in the future)</p>
         <div id="dialogButtonContainer">
-            <button id="computerChoice">Computer</button>
-            <button id="playerChoice">Player V Player</button>
+            <button id="computerChoice">START GAME</button>
+            <!-- <button id="playerChoice">Player V Player</button> -->
         </div>
     </dialog>
     <div id="results">
@@ -24,6 +24,11 @@
     <div id="layout">
         <div id="shipsContainer">
             <div>DRAG SHIPS TO PLACE</div>
+            <div class="ship" id="destroyer" data-length="2"></div>
+            <div class="ship" id="submarine" data-length="3"></div>
+            <div class="ship" id="cruiser" data-length="3"></div>
+            <div class="ship" id="battleship" data-length="4"></div>
+            <div class="ship" id="carrier" data-length="5"></div>
         </div>
         <div id="board">
             <div id="myBoard">
