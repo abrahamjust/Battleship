@@ -91,7 +91,9 @@ if not dialog won't close since flex will bring the dialog up to apply style*/
     grid-area: 1 / 1 / 3 / 2;
     background-color: rgba(48, 48, 53, 0.5);
     border-radius: 5px;
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #shipsContainer div {
@@ -143,6 +145,7 @@ if not dialog won't close since flex will bring the dialog up to apply style*/
     flex-direction: column;
 }
 
+
 #setup {
     width: 8rem;
     height: 5rem;
@@ -185,7 +188,14 @@ if not dialog won't close since flex will bring the dialog up to apply style*/
     background-color: black;
 }
 
-#destroyer {
+#orientation {
+    background-color: white;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+/* #destroyer {
     width: 20px;
     height: 30px;
     background-color: grey;
@@ -213,4 +223,11 @@ if not dialog won't close since flex will bring the dialog up to apply style*/
     width: 60px;
     height: 30px;
     background-color: grey;
+} */
+
+.ship {
+  background-color: grey;
+  width: fit-content;
+  height: auto;
+  cursor: grab;
 }

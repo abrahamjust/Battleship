@@ -1,7 +1,8 @@
 import "./styles.css";
 import { getChoice, displayBoard, addDivEventListeners, removeListeners } from "./domHandler.js";
+import { makeShipsDraggableAndCellsDroppable, toggleOrientation } from "./dragShipsLogic.js";
 import { Player } from "./Player.js";
-import { attackLogic } from "./computerAttackLogic.js";
+import { attackLogic, computerPlaceShip } from "./computerAttackLogic.js";
 
 let player1, computer, player2;
 
@@ -14,21 +15,33 @@ async function initialize() { // use promises to wait till choice is made
         player2 = 0; // no player 2
 
         displayBoard(player1); // plan is to display grid to place ships, then display completed board after pressing setup button
-
+        makeShipsDraggableAndCellsDroppable(player1);
         // to add ship placing stuff here
 
         let setUpButton = document.getElementById('setup');
-        setUpButton.addEventListener('click', () => { // will run once per game only
+        let orientation = document.getElementById('orientation');
+        orientation.addEventListener('click', () => {
+            toggleOrientation();
+        });
+
+        setUpButton.addEventListener('click', () => {
+            if (!player1.board.checkShipPlaced()) {
+                alert("Place all ships first!");
+                return;
+            }
             let result = document.getElementById('textResult');
             result.innerText = "START";
             startGameComputer();
-        }, { once: true });
-
-
+        });
     }
 };
 
 function startGameComputer() {
+    let setUpButton = document.getElementById('setup');
+    setUpButton.remove();
+    computerPlaceShip(computer);
+    console.log(player1.board.board);
+    console.log(computer.board.board);
     playerAttack(computer);
 }
 
@@ -38,7 +51,7 @@ function playerAttack(object) { // object is getting attacked (can also be anoth
     // attack computer
     addDivEventListeners(object, () => {
         // delay computer's turn by 1 second
-        removeListeners(); 
+        removeListeners();
         setTimeout(() => {
             computerAttack();
         }, 1000); // 1000 ms = 1 second
@@ -55,7 +68,7 @@ function computerAttack() { // player is getting attacked, it will always be pla
     attackLogic(player1);
     if (player1.board.checkShipStatus()) {
         result.innerText = "COMPUTER HAS WON";
-        removeListeners(); 
+        removeListeners();
     } else {
         setTimeout(() => {
             playerAttack(computer);

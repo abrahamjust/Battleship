@@ -6,16 +6,16 @@ class Gameboard {
         this.ships = new Ship();
 
         this.board = [ // hard coded for testing purposes
-            ['d', 'd', 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            ['b', 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            ['b', 0, 'cr', 'cr', 'cr', 0, 0, 0, 0, 0],
-            ['b', 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            ['b', 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            ['ca', 'ca', 'ca', 'ca', 'ca', 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            ['s', 's', 's', 0, 0, 0, 0, 0, 0, 0]
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         ];
 
         this.enemyBoard = [
@@ -199,5 +199,14 @@ class Gameboard {
             return true;
         }
         return false;
+    }
+
+    checkShipPlaced() {
+        for(let ship in this.placed) {
+            if(this.placed[ship] == false) {
+                return false; // not all ships placed
+            }
+        }
+        return true;
     }
 }
